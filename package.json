@@ -1,0 +1,38 @@
+{
+  "name": "hapi-mail",
+  "description": "Hapi email plugin",
+  "version": "0.0.1",
+  "author": "Paul Lang",
+  "contributors": [],
+  "repository": "https://github.com/paullang/hapi-mail.git",
+  "main": "index",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "email",
+    "ses"
+  ],
+  "engines": {
+    "node": "0.10.x"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "handlebars": "1.0.x",
+    "aws-sdk": "1.4.x"
+  },
+  "devDependencies": {
+    "lab": "0.1.x",
+    "hapi": "1.x.x"
+  },
+  "peerDependencies": {
+    "hapi": "1.x.x"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "https://github.com/paullang/hapi-mail/blob/master/LICENSE"
+    }
+  ]
+}
