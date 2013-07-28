@@ -75,6 +75,33 @@ describe('hapi-mail', function () {
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
+            expect(email.from).to.equal(options.email.defaultFrom);
+
+            expect(err).to.not.exist;
+            expect(response.MessageId).to.not.equal('');
+            done();
+        });
+    });
+
+    it('can assign from to replyTo and returnPath', function (done) {
+        var options = Hapi.utils.clone(baseOptions);
+
+        var email = Hapi.utils.clone(baseEmail);
+        delete email.replyTo;
+        delete email.returnPath;
+        email.subject += ' with no replyTo or returnPath';
+
+        var server = new Hapi.Server();
+        server.pack.allow({ }).require('../', options, function (err) {
+
+            expect(err).to.not.exist;
+        });
+
+        server.plugins['hapi-mail'].sendMail(email, function(err, response) {
+
+            expect(email.replyTo[0]).to.equal(email.from);
+            expect(email.returnPath).to.equal(email.from);
+
             expect(err).to.not.exist;
             expect(response.MessageId).to.not.equal('');
             done();
