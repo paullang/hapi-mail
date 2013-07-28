@@ -108,4 +108,29 @@ describe('hapi-mail', function () {
         });
     });
 
+    it('can allow cc and bcc to not be specicied in the email object', function (done) {
+        var options = Hapi.utils.clone(baseOptions);
+
+        var email = Hapi.utils.clone(baseEmail);
+        delete email.cc;
+        delete email.bcc;
+        email.subject += ' with no cc or bcc';
+
+        var server = new Hapi.Server();
+        server.pack.allow({ }).require('../', options, function (err) {
+
+            expect(err).to.not.exist;
+        });
+
+        server.plugins['hapi-mail'].sendMail(email, function(err, response) {
+
+            expect(email.cc.length).to.equal(0);
+            expect(email.bcc.length).to.equal(0);
+
+            expect(err).to.not.exist;
+            expect(response.MessageId).to.not.equal('');
+            done();
+        });
+    });
+
 });
