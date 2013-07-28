@@ -1,7 +1,7 @@
 {
   "name": "hapi-mail",
-  "description": "Hapi email plugin",
-  "version": "0.0.1",
+  "description": "Email plugin for Hapi.js",
+  "version": "0.0.2",
   "author": "Paul Lang",
   "contributors": [],
   "repository": "https://github.com/paullang/hapi-mail.git",
