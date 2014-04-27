@@ -38,7 +38,7 @@ var email = {
     bodyData: { name: 'Paul Lang', username: 'paullang' }
 };
 
-server.pack.allow({ }).require('hapi-mail', options, function (err) {
+server.pack.require('hapi-mail', options, function (err) {
 
    ....
 });

@@ -2,7 +2,7 @@
 
 var Lab = require('lab');
 var Hapi = require('hapi');
-
+var Hoek = require('hoek');
 
 // Test shortcuts
 
@@ -42,11 +42,11 @@ describe('hapi-mail', function () {
 
     it('can be added as a plugin to hapi and send email', function (done) {
 
-        var options = Hapi.utils.clone(baseOptions);
-        var email = Hapi.utils.clone(baseEmail);
+        var options = Hoek.clone(baseOptions);
+        var email = Hoek.clone(baseEmail);
 
         var server = new Hapi.Server();
-        server.pack.allow({ }).require('../', options, function (err) {
+        server.pack.require('../', options, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -60,15 +60,15 @@ describe('hapi-mail', function () {
     });
 
     it('can send an email from defaultFrom', function (done) {
-        var options = Hapi.utils.clone(baseOptions);
+        var options = Hoek.clone(baseOptions);
         options.email.defaultFrom = testEmail;
 
-        var email = Hapi.utils.clone(baseEmail);
+        var email = Hoek.clone(baseEmail);
         delete email.from;
         email.subject += ' from defaultFrom';
 
         var server = new Hapi.Server();
-        server.pack.allow({ }).require('../', options, function (err) {
+        server.pack.require('../', options, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -84,15 +84,15 @@ describe('hapi-mail', function () {
     });
 
     it('can assign from to replyTo and returnPath', function (done) {
-        var options = Hapi.utils.clone(baseOptions);
+        var options = Hoek.clone(baseOptions);
 
-        var email = Hapi.utils.clone(baseEmail);
+        var email = Hoek.clone(baseEmail);
         delete email.replyTo;
         delete email.returnPath;
         email.subject += ' with no replyTo or returnPath';
 
         var server = new Hapi.Server();
-        server.pack.allow({ }).require('../', options, function (err) {
+        server.pack.require('../', options, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -109,15 +109,15 @@ describe('hapi-mail', function () {
     });
 
     it('can allow cc and bcc to not be specicied in the email object', function (done) {
-        var options = Hapi.utils.clone(baseOptions);
+        var options = Hoek.clone(baseOptions);
 
-        var email = Hapi.utils.clone(baseEmail);
+        var email = Hoek.clone(baseEmail);
         delete email.cc;
         delete email.bcc;
         email.subject += ' with no cc or bcc';
 
         var server = new Hapi.Server();
-        server.pack.allow({ }).require('../', options, function (err) {
+        server.pack.require('../', options, function (err) {
 
             expect(err).to.not.exist;
         });
