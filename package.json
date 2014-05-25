@@ -1,7 +1,7 @@
 {
   "name": "hapi-mail",
   "description": "Email plugin for Hapi.js",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "author": "Paul Lang",
   "contributors": [],
   "repository": "https://github.com/paullang/hapi-mail.git",
@@ -19,17 +19,17 @@
     "test": "make test"
   },
   "dependencies": {
-    "handlebars": "1.0.x",
-    "aws-sdk": "1.4.x",
+    "handlebars": "1.3.x",
+    "aws-sdk": "1.18.x",
     "hoek": "2.1.x"
   },
   "devDependencies": {
-    "lab": "3.1.x",
-    "hapi": "4.1.x",
+    "lab": "3.2.x",
+    "hapi": "5.x.x",
     "hoek": "2.1.x"
   },
   "peerDependencies": {
-    "hapi": "4.1.x"
+    "hapi": "5.x.x"
   },
   "licenses": [
     {
