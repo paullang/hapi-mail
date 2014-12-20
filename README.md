@@ -38,7 +38,7 @@ var email = {
     bodyData: { name: 'Paul Lang', username: 'paullang' }
 };
 
-server.pack.require('hapi-mail', options, function (err) {
+server.register({register: require('hapi-mail'), options: options}, function (err) {
 
    ....
 });
@@ -67,3 +67,6 @@ e.g. server.plugins['hapi-mail'].sendMail(...) and cannot use server.plugins.hap
 
 **AWS PROTIP:** Don't store your actual AWS key and secret in your source code and don't use your root AWS key and secret for your applications.
 Setup a limited access key using [AWS IAM](http://aws.amazon.com/iam/) and either put them in environment variables or into a separate configuration file that won't get uploaded somewhere public like Github or NPM.
+
+**NODE v0.10.34 Warning:** Node v0.10.34 removed some CA certificates including the one used by AWS, so you should use v0.10.33 until those certs are added back.
+
