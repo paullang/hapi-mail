@@ -6,11 +6,11 @@ var Hoek = require('hoek');
 
 // Test shortcuts
 
-var expect = Lab.expect;
-var before = Lab.before;
-var after = Lab.after;
-var describe = Lab.experiment;
-var it = Lab.test;
+var lab = exports.lab = Lab.script();
+var before = lab.before;
+var describe = lab.experiment;
+var it = lab.test;
+var expect = require('code').expect;
 
 
 describe('hapi-mail', function () {
@@ -46,7 +46,7 @@ describe('hapi-mail', function () {
         var email = Hoek.clone(baseEmail);
 
         var server = new Hapi.Server();
-        server.pack.require('../', options, function (err) {
+        server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -68,7 +68,7 @@ describe('hapi-mail', function () {
         email.subject += ' from defaultFrom';
 
         var server = new Hapi.Server();
-        server.pack.require('../', options, function (err) {
+        server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -92,7 +92,7 @@ describe('hapi-mail', function () {
         email.subject += ' with no replyTo or returnPath';
 
         var server = new Hapi.Server();
-        server.pack.require('../', options, function (err) {
+        server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
         });
@@ -117,7 +117,7 @@ describe('hapi-mail', function () {
         email.subject += ' with no cc or bcc';
 
         var server = new Hapi.Server();
-        server.pack.require('../', options, function (err) {
+        server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
         });
