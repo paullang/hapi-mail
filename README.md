@@ -1,6 +1,6 @@
 # hapi-mail
 
-Email plugin for [Hapi.js](https://github.com/spumko/hapi)
+Email plugin for [Hapi.js](https://github.com/hapijs/hapi)
 
 ## Background
 
@@ -11,10 +11,10 @@ Install **hapi-mail** by either running `npm install hapi-mail --save` in your a
 
 ## How to use
 
-This module assumes you are already familiar with [Hapi.js](https://github.com/spumko/hapi) and it's plugin conventions.
+This module assumes you are already familiar with [Hapi.js](https://github.com/hapijs/hapi) and it's plugin conventions.
 
 ```javascript 
-var options = { 
+const options = { 
     template: {
         engine: 'handlebars',
         path: './emails/' 
@@ -26,7 +26,7 @@ var options = {
     }
 };
 
-var email = {
+const email = {
     from: 'somebody@yourdomain.com',
     to: ['user@userland.com'],
     cc: ['boss@yourdomain.com'],
@@ -67,6 +67,3 @@ e.g. server.plugins['hapi-mail'].sendMail(...) and cannot use server.plugins.hap
 
 **AWS PROTIP:** Don't store your actual AWS key and secret in your source code and don't use your root AWS key and secret for your applications.
 Setup a limited access key using [AWS IAM](http://aws.amazon.com/iam/) and either put them in environment variables or into a separate configuration file that won't get uploaded somewhere public like Github or NPM.
-
-**NODE v0.10.34 Warning:** Node v0.10.34 removed some CA certificates including the one used by AWS, so you should use v0.10.33 until those certs are added back.
-
