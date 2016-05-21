@@ -1,21 +1,21 @@
 // Load modules
 
-var Lab = require('lab');
-var Hapi = require('hapi');
-var Hoek = require('hoek');
+const Lab = require('lab');
+const Hapi = require('hapi');
+const Hoek = require('hoek');
 
 // Test shortcuts
 
-var lab = exports.lab = Lab.script();
-var before = lab.before;
-var describe = lab.experiment;
-var it = lab.test;
-var expect = require('code').expect;
+const lab = exports.lab = Lab.script();
+const before = lab.before;
+const describe = lab.experiment;
+const it = lab.test;
+const expect = require('code').expect;
 
 
 describe('hapi-mail', function () {
 
-    var baseOptions = { 
+    const baseOptions = { 
         template: {
             engine: 'handlebars',
             path: './test/emails/' 
@@ -26,9 +26,9 @@ describe('hapi-mail', function () {
         }
     };
 
-    var testEmail = process.env.EMAIL;
+    const testEmail = process.env.EMAIL;
 
-    var baseEmail = {
+    const baseEmail = {
         from: testEmail,
         to: [testEmail],
         cc: [],
@@ -42,10 +42,10 @@ describe('hapi-mail', function () {
 
     it('can be added as a plugin to hapi and send email', function (done) {
 
-        var options = Hoek.clone(baseOptions);
-        var email = Hoek.clone(baseEmail);
+        const options = Hoek.clone(baseOptions);
+        const email = Hoek.clone(baseEmail);
 
-        var server = new Hapi.Server();
+        const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
@@ -60,14 +60,14 @@ describe('hapi-mail', function () {
     });
 
     it('can send an email from defaultFrom', function (done) {
-        var options = Hoek.clone(baseOptions);
+        const options = Hoek.clone(baseOptions);
         options.email.defaultFrom = testEmail;
 
-        var email = Hoek.clone(baseEmail);
+        const email = Hoek.clone(baseEmail);
         delete email.from;
         email.subject += ' from defaultFrom';
 
-        var server = new Hapi.Server();
+        const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
@@ -84,14 +84,14 @@ describe('hapi-mail', function () {
     });
 
     it('can assign from to replyTo and returnPath', function (done) {
-        var options = Hoek.clone(baseOptions);
+        const options = Hoek.clone(baseOptions);
 
-        var email = Hoek.clone(baseEmail);
+        const email = Hoek.clone(baseEmail);
         delete email.replyTo;
         delete email.returnPath;
         email.subject += ' with no replyTo or returnPath';
 
-        var server = new Hapi.Server();
+        const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
@@ -109,14 +109,14 @@ describe('hapi-mail', function () {
     });
 
     it('can allow cc and bcc to not be specicied in the email object', function (done) {
-        var options = Hoek.clone(baseOptions);
+        const options = Hoek.clone(baseOptions);
 
-        var email = Hoek.clone(baseEmail);
+        const email = Hoek.clone(baseEmail);
         delete email.cc;
         delete email.bcc;
         email.subject += ' with no cc or bcc';
 
-        var server = new Hapi.Server();
+        const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
             expect(err).to.not.exist;
