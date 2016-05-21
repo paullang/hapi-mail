@@ -1,5 +1,7 @@
 # hapi-mail
 
+[![Build Status](https://travis-ci.org/paullang/deadbox.png)](https://travis-ci.org/paullang/deadbox)
+
 Email plugin for [Hapi.js](https://github.com/hapijs/hapi)
 
 ## Background
