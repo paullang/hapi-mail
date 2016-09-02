@@ -1,7 +1,7 @@
 {
   "name": "hapi-mail",
   "description": "Email plugin for Hapi.js",
-  "version": "13.0.1",
+  "version": "14.0.0",
   "author": "Paul Lang",
   "contributors": [],
   "repository": "https://github.com/paullang/hapi-mail.git",
@@ -24,13 +24,13 @@
     "hoek": "4.x.x"
   },
   "devDependencies": {
-    "lab": "10.x.x",
-    "hapi": "13.x.x",
+    "lab": "11.x.x",
+    "hapi": "14.x.x",
     "hoek": "4.x.x",
     "code": "3.x.x"
   },
   "peerDependencies": {
-    "hapi": "13.x.x"
+    "hapi": "14.x.x"
   },
   "license": "Apache-2.0"
 }
