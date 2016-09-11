@@ -15,10 +15,10 @@ const expect = require('code').expect;
 
 describe('hapi-mail', function () {
 
-    const baseOptions = { 
+    const baseOptions = {
         template: {
             engine: 'handlebars',
-            path: './test/emails/' 
+            path: './test/emails/'
         },
         email: {
             engine: 'ses',
@@ -48,12 +48,12 @@ describe('hapi-mail', function () {
         const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
         });
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
             expect(response.MessageId).to.not.equal('');
             done();
         });
@@ -70,14 +70,14 @@ describe('hapi-mail', function () {
         const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
         });
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
             expect(email.from).to.equal(options.email.defaultFrom);
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
             expect(response.MessageId).to.not.equal('');
             done();
         });
@@ -94,7 +94,7 @@ describe('hapi-mail', function () {
         const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
         });
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
@@ -102,7 +102,7 @@ describe('hapi-mail', function () {
             expect(email.replyTo[0]).to.equal(email.from);
             expect(email.returnPath).to.equal(email.from);
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
             expect(response.MessageId).to.not.equal('');
             done();
         });
@@ -119,7 +119,7 @@ describe('hapi-mail', function () {
         const server = new Hapi.Server();
         server.register({register: require('../'), options: options}, function (err) {
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
         });
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
@@ -127,10 +127,9 @@ describe('hapi-mail', function () {
             expect(email.cc.length).to.equal(0);
             expect(email.bcc.length).to.equal(0);
 
-            expect(err).to.not.exist;
+            expect(err).to.not.exist();
             expect(response.MessageId).to.not.equal('');
             done();
         });
     });
-
 });
