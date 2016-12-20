@@ -25,12 +25,12 @@
   },
   "devDependencies": {
     "lab": "11.x.x",
-    "hapi": "15.x.x",
+    "hapi": "16.x.x",
     "hoek": "4.x.x",
-    "code": "3.x.x"
+    "code": "4.x.x"
   },
   "peerDependencies": {
-    "hapi": "15.x.x"
+    "hapi": "16.x.x"
   },
   "license": "Apache-2.0"
 }
