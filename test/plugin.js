@@ -40,16 +40,13 @@ describe('hapi-mail', function () {
         bodyData: { name: 'Paul Lang', username: 'paullang' }
     };
 
-    it('can be added as a plugin to hapi and send email', function (done) {
+    it('can be added as a plugin to hapi and send email', async (done) => {
 
         const options = Hoek.clone(baseOptions);
         const email = Hoek.clone(baseEmail);
 
         const server = new Hapi.Server();
-        server.register({register: require('../'), options: options}, function (err) {
-
-            expect(err).to.not.exist();
-        });
+        await server.register({plugin: require('../'), options: options});
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
@@ -59,7 +56,7 @@ describe('hapi-mail', function () {
         });
     });
 
-    it('can send an email from defaultFrom', function (done) {
+    it('can send an email from defaultFrom', async (done) => {
         const options = Hoek.clone(baseOptions);
         options.email.defaultFrom = testEmail;
 
@@ -68,10 +65,7 @@ describe('hapi-mail', function () {
         email.subject += ' from defaultFrom';
 
         const server = new Hapi.Server();
-        server.register({register: require('../'), options: options}, function (err) {
-
-            expect(err).to.not.exist();
-        });
+        await server.register({plugin: require('../'), options: options});
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
@@ -83,7 +77,7 @@ describe('hapi-mail', function () {
         });
     });
 
-    it('can assign from to replyTo and returnPath', function (done) {
+    it('can assign from to replyTo and returnPath', async (done) => {
         const options = Hoek.clone(baseOptions);
 
         const email = Hoek.clone(baseEmail);
@@ -92,10 +86,7 @@ describe('hapi-mail', function () {
         email.subject += ' with no replyTo or returnPath';
 
         const server = new Hapi.Server();
-        server.register({register: require('../'), options: options}, function (err) {
-
-            expect(err).to.not.exist();
-        });
+        await server.register({plugin: require('../'), options: options});
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
@@ -108,7 +99,7 @@ describe('hapi-mail', function () {
         });
     });
 
-    it('can allow cc and bcc to not be specicied in the email object', function (done) {
+    it('can allow cc and bcc to not be specicied in the email object', async (done) => {
         const options = Hoek.clone(baseOptions);
 
         const email = Hoek.clone(baseEmail);
@@ -117,10 +108,7 @@ describe('hapi-mail', function () {
         email.subject += ' with no cc or bcc';
 
         const server = new Hapi.Server();
-        server.register({register: require('../'), options: options}, function (err) {
-
-            expect(err).to.not.exist();
-        });
+        await server.register({plugin: require('../'), options: options});
 
         server.plugins['hapi-mail'].sendMail(email, function(err, response) {
 
