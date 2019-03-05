@@ -19,7 +19,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "handlebars": "4.x.x",
+    "handlebars": "^4.1.0",
     "aws-sdk": "2.x.x",
     "hoek": "5.x.x"
   },
@@ -29,7 +29,7 @@
     "code": "3.x.x"
   },
   "peerDependencies": {
-    "hapi": "15.x.x"
+    "hapi": ">=15.0.0"
   },
   "license": "Apache-2.0"
 }
