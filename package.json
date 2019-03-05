@@ -19,7 +19,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "handlebars": "4.x.x",
+    "handlebars": "^4.1.0",
     "aws-sdk": "2.x.x",
     "hoek": "4.x.x"
   },
